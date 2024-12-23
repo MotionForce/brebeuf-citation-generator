@@ -25,7 +25,7 @@
   } from "sveltekit-superforms";
   import { zodClient } from "sveltekit-superforms/adapters";
   import { toast } from "svelte-sonner";
-  import { browser, dev } from "$app/environment";
+  // import { browser, dev } from "$app/environment";
   import { cn } from "$lib/utils.js";
   import { Button, buttonVariants } from "$lib/components/ui/button/index.js";
   import { Calendar } from "$lib/components/ui/calendar/index.js";
@@ -72,7 +72,7 @@
       <div class="flex-nonee min-w-24">
         <Form.Field {form} name="citationFormSchemaOptions.source_type">
           <Form.Control let:attrs>
-            <Form.Label>Source Type</Form.Label>
+            <Form.Label>Type de source</Form.Label>
             <Select.Root
               selected={selectedSourceType}
               onSelectedChange={(v) => {
@@ -86,7 +86,9 @@
               </Select.Trigger>
               <Select.Content>
                 {#each Object.entries(source_types) as [value, label]}
-                  <Select.Item {value}>{label}</Select.Item>
+                  <Select.Item {value}
+                    >{label === "Livre" ? "Livre" : "Web"}</Select.Item
+                  >
                 {/each}
               </Select.Content>
             </Select.Root>
@@ -102,11 +104,11 @@
       <div class="grow">
         <Form.Field {form} name="title">
           <Form.Control let:attrs>
-            <Form.Label>Title</Form.Label>
+            <Form.Label>Titre</Form.Label>
             <Input {...attrs} bind:value={$formData.title} />
           </Form.Control>
           <Form.Description hidden
-            >This is the name of the source</Form.Description
+            >Ceci est le titre de la source</Form.Description
           >
           <Form.FieldErrors></Form.FieldErrors>
         </Form.Field>
@@ -117,11 +119,11 @@
       <div class="grow">
         <Form.Field {form} name="author">
           <Form.Control let:attrs>
-            <Form.Label>Author (first name)</Form.Label>
+            <Form.Label>Auteur (prénom)</Form.Label>
             <Input {...attrs} bind:value={$formData.author.first_name} />
           </Form.Control>
           <Form.Description hidden
-            >The first name of the author of the source</Form.Description
+            >Ceci est le nom de famille de l'auteur</Form.Description
           >
           <Form.FieldErrors></Form.FieldErrors>
         </Form.Field>
@@ -130,29 +132,30 @@
       <div class="grow">
         <Form.Field {form} name="author">
           <Form.Control let:attrs>
-            <Form.Label>Author (last name)</Form.Label>
+            <Form.Label>Auteur (nom de famille)</Form.Label>
             <Input {...attrs} bind:value={$formData.author.last_name} />
           </Form.Control>
           <Form.Description hidden
-            >The first name of the author of the source</Form.Description
+            >Ceci est le nom de famille de l'auteur</Form.Description
           >
           <Form.FieldErrors></Form.FieldErrors>
         </Form.Field>
       </div>
     </div>
     <!-- Book fields -->
-    {#if $formData.citationFormSchemaOptions.source_type === "book"}
+    {#if $formData.citationFormSchemaOptions.source_type === "livre"}
       <!-- Publisher -->
       <div class="grow">
         <Form.Field {form} name="citationFormSchemaOptions.publisher">
           <Form.Control let:attrs>
-            <Form.Label>Publisher</Form.Label>
+            <Form.Label>Éditions</Form.Label>
             <Input
               {...attrs}
               bind:value={$formData.citationFormSchemaOptions.publisher}
             />
           </Form.Control>
-          <Form.Description hidden>The publisher of the source</Form.Description
+          <Form.Description hidden
+            >Ceci est la maison d'édition de la source</Form.Description
           >
           <Form.FieldErrors></Form.FieldErrors>
         </Form.Field>
@@ -168,7 +171,7 @@
             />
           </Form.Control>
           <Form.Description hidden
-            >The collection of the edition of the book</Form.Description
+            >Ceci est la collection de la source</Form.Description
           >
           <Form.FieldErrors></Form.FieldErrors>
         </Form.Field>
@@ -177,14 +180,14 @@
       <div class="grow">
         <Form.Field {form} name="citationFormSchemaOptions.year">
           <Form.Control let:attrs>
-            <Form.Label>Year</Form.Label>
+            <Form.Label>Année</Form.Label>
             <Input
               {...attrs}
               bind:value={$formData.citationFormSchemaOptions.year}
             />
           </Form.Control>
           <Form.Description hidden
-            >The year the book was published</Form.Description
+            >Ceci est l'année la source a été publiée</Form.Description
           >
           <Form.FieldErrors></Form.FieldErrors>
         </Form.Field>
@@ -193,14 +196,14 @@
       <div class="grow">
         <Form.Field {form} name="citationFormSchemaOptions.page">
           <Form.Control let:attrs>
-            <Form.Label>Year</Form.Label>
+            <Form.Label>Page</Form.Label>
             <Input
               {...attrs}
               bind:value={$formData.citationFormSchemaOptions.page}
             />
           </Form.Control>
           <Form.Description hidden
-            >The page the citation refers to</Form.Description
+            >La page à laquelle la source réfère</Form.Description
           >
           <Form.FieldErrors></Form.FieldErrors>
         </Form.Field>
@@ -212,13 +215,13 @@
       <div class="grow">
         <Form.Field {form} name="citationFormSchemaOptions.name">
           <Form.Control let:attrs>
-            <Form.Label>Website Name</Form.Label>
+            <Form.Label>Nom du site</Form.Label>
             <Input
               {...attrs}
               bind:value={$formData.citationFormSchemaOptions.name}
             />
           </Form.Control>
-          <Form.Description hidden>The name of the website</Form.Description>
+          <Form.Description hidden>Le nom du siteweb</Form.Description>
           <Form.FieldErrors></Form.FieldErrors>
         </Form.Field>
       </div>
@@ -232,7 +235,7 @@
               bind:value={$formData.citationFormSchemaOptions.url}
             />
           </Form.Control>
-          <Form.Description hidden>The URL of the source</Form.Description>
+          <Form.Description hidden>Le lien URL vers la source</Form.Description>
           <Form.FieldErrors></Form.FieldErrors>
         </Form.Field>
       </div>
@@ -244,7 +247,7 @@
           class="flex flex-col"
         >
           <Form.Control let:attrs>
-            <Form.Label>Date the URL was accessed on</Form.Label>
+            <Form.Label>Date de consultation</Form.Label>
             <Popover.Root>
               <Popover.Trigger
                 {...attrs}
@@ -279,7 +282,7 @@
               </Popover.Content>
             </Popover.Root>
             <Form.Description hidden
-              >The date the URL was accessed on</Form.Description
+              >La date à laquelle la source a été consultatée</Form.Description
             >
             <Form.FieldErrors />
             <input
@@ -292,9 +295,9 @@
       </div>
     {/if}
     <!-- <Form.FormFieldErrors /> -->
-    <Button type="submit">Submit</Button>
-    {#if browser && dev}
+    <Button type="submit">Ajouter</Button>
+    <!-- {#if browser && dev}
       <SuperDebug data={$formData} />
-    {/if}
+    {/if} -->
   </form>
 </div>

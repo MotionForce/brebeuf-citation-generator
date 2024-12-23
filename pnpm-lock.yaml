@@ -11,6 +11,9 @@ importers:
       '@tailwindcss/forms':
         specifier: ^0.5.9
         version: 0.5.9(tailwindcss@3.4.16)
+      svelte-copy:
+        specifier: ^2.0.0
+        version: 2.0.0(svelte@5.11.2)
       svelte-sonner:
         specifier: ^0.3.28
         version: 0.3.28(svelte@5.11.2)
@@ -1103,6 +1106,11 @@ packages:
     peerDependencies:
       svelte: ^4.0.0 || ^5.0.0-next.0
       typescript: '>=5.0.0'
+
+  svelte-copy@2.0.0:
+    resolution: {integrity: sha512-wJ784qrc9CF7EtrlT2kwJfHnqae/pp4fkgzYeUxex4iFBm6HosT2904t5cZZ1GAZzg/z9V+lCZVP5rpiYsN6Tw==}
+    peerDependencies:
+      svelte: ^5.0.0
 
   svelte-sonner@0.3.28:
     resolution: {integrity: sha512-K3AmlySeFifF/cKgsYNv5uXqMVNln0NBAacOYgmkQStLa/UoU0LhfAACU6Gr+YYC8bOCHdVmFNoKuDbMEsppJg==}
@@ -2227,6 +2235,10 @@ snapshots:
       typescript: 5.7.2
     transitivePeerDependencies:
       - picomatch
+
+  svelte-copy@2.0.0(svelte@5.11.2):
+    dependencies:
+      svelte: 5.11.2
 
   svelte-sonner@0.3.28(svelte@5.11.2):
     dependencies:

@@ -1,11 +1,11 @@
 import { z } from "zod";
 
 export const source_types = {
-  book: "Book",
+  livre: "Livre",
   web: "Web",
 } as const;
 
-const source_enum = z.enum(["book", "web"]);
+const source_enum = z.enum(["livre", "web"]);
 
 export const citationFormSchemaOptions = z.discriminatedUnion("source_type", [
   z.object({
@@ -17,9 +17,9 @@ export const citationFormSchemaOptions = z.discriminatedUnion("source_type", [
   z.object({
     publisher: z.string().min(1).max(255).optional(),
     collection: z.string().min(1).max(255).optional(),
-    year: z.number().int().lte(3000).default(2025).optional(),
-    page: z.number().min(1).max(10000).finite().default(1),
-    source_type: source_enum.extract(["book"]),
+    year: z.string().default("2025").optional(),
+    page: z.string().default("1"),
+    source_type: source_enum.extract(["livre"]),
   }),
 ]);
 

@@ -1,7 +1,7 @@
 {
 	"name": "brebeuf-citation-generator",
 	"private": true,
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
@@ -36,6 +36,7 @@
 	},
 	"dependencies": {
 		"@tailwindcss/forms": "^0.5.9",
+		"svelte-copy": "^2.0.0",
 		"svelte-sonner": "^0.3.28"
 	}
 }
