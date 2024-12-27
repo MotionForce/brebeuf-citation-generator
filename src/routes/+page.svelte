@@ -33,7 +33,4 @@
     {/key}
   </div>
 </div>
-<footer>
-	<p>Andrey Kovalskiy © 2024. Tous droits résérvés. Courriel : akovalskiybox@gmail.com</p>
-</footer>
 <!-- <pre>{JSON.stringify(data, null, 2)}</pre> -->
