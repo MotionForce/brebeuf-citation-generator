@@ -192,21 +192,39 @@
           <Form.FieldErrors></Form.FieldErrors>
         </Form.Field>
       </div>
-      <!-- Page -->
-      <div class="grow">
-        <Form.Field {form} name="citationFormSchemaOptions.page">
-          <Form.Control let:attrs>
-            <Form.Label>Page</Form.Label>
-            <Input
-              {...attrs}
-              bind:value={$formData.citationFormSchemaOptions.page}
-            />
-          </Form.Control>
-          <Form.Description hidden
-            >La page à laquelle la source réfère</Form.Description
-          >
-          <Form.FieldErrors></Form.FieldErrors>
-        </Form.Field>
+      <div class="flex flex-row space-x-2">
+        <!-- Page -->
+        <div class="grow">
+          <Form.Field {form} name="citationFormSchemaOptions.page">
+            <Form.Control let:attrs>
+              <Form.Label>Page</Form.Label>
+              <Input
+                {...attrs}
+                bind:value={$formData.citationFormSchemaOptions.page}
+              />
+            </Form.Control>
+            <Form.Description hidden
+              >La page à laquelle la source réfère</Form.Description
+            >
+            <Form.FieldErrors></Form.FieldErrors>
+          </Form.Field>
+        </div>
+        <!-- Total pages -->
+        <div class="grow">
+          <Form.Field {form} name="citationFormSchemaOptions.total_pages">
+            <Form.Control let:attrs>
+              <Form.Label>Nombre total de pages</Form.Label>
+              <Input
+                {...attrs}
+                bind:value={$formData.citationFormSchemaOptions.total_pages}
+              />
+            </Form.Control>
+            <Form.Description hidden
+              >Le nombre total de pages dans le livre</Form.Description
+            >
+            <Form.FieldErrors></Form.FieldErrors>
+          </Form.Field>
+        </div>
       </div>
 
       <!-- Web fields -->
@@ -239,59 +257,78 @@
           <Form.FieldErrors></Form.FieldErrors>
         </Form.Field>
       </div>
-      <!-- Accesed on -->
-      <div class="grow">
-        <Form.Field
-          {form}
-          name="citationFormSchemaOptions.accessed_on"
-          class="flex flex-col"
-        >
-          <Form.Control let:attrs>
-            <Form.Label>Date de consultation</Form.Label>
-            <Popover.Root>
-              <Popover.Trigger
-                {...attrs}
-                class={cn(
-                  buttonVariants({ variant: "outline" }),
-                  "w-[280px] justify-start pl-4 text-left font-normal",
-                  !dateValue && "text-muted-foreground",
-                )}
+      <div class="flex flex-row space-x-2">
+        <!-- Accesed on -->
+        <div class="grow">
+          <Form.Field
+            {form}
+            name="citationFormSchemaOptions.accessed_on"
+            class="flex flex-col"
+          >
+            <Form.Control let:attrs>
+              <Form.Label>Date de consultation</Form.Label>
+              <Popover.Root>
+                <Popover.Trigger
+                  {...attrs}
+                  class={cn(
+                    buttonVariants({ variant: "outline" }),
+                    "w-[280px] justify-start pl-4 text-left font-normal",
+                    !dateValue && "text-muted-foreground",
+                  )}
+                >
+                  {dateValue
+                    ? df.format(dateValue.toDate(getLocalTimeZone()))
+                    : "Pick a date"}
+                  <CalendarIcon class="ml-auto h-4 w-4 opacity-50" />
+                </Popover.Trigger>
+                <Popover.Content class="w-auto p-0" side="top">
+                  <Calendar
+                    value={dateValue}
+                    bind:placeholder
+                    minValue={new CalendarDate(1900, 1, 1)}
+                    maxValue={today(getLocalTimeZone())}
+                    calendarLabel="Date accesed on"
+                    initialFocus
+                    onValueChange={(v) => {
+                      if (v) {
+                        $formData.citationFormSchemaOptions.accessed_on =
+                          v.toString();
+                      } else {
+                        $formData.citationFormSchemaOptions.accessed_on = "";
+                      }
+                    }}
+                  />
+                </Popover.Content>
+              </Popover.Root>
+              <Form.Description hidden
+                >La date à laquelle la source a été consultatée</Form.Description
               >
-                {dateValue
-                  ? df.format(dateValue.toDate(getLocalTimeZone()))
-                  : "Pick a date"}
-                <CalendarIcon class="ml-auto h-4 w-4 opacity-50" />
-              </Popover.Trigger>
-              <Popover.Content class="w-auto p-0" side="top">
-                <Calendar
-                  value={dateValue}
-                  bind:placeholder
-                  minValue={new CalendarDate(1900, 1, 1)}
-                  maxValue={today(getLocalTimeZone())}
-                  calendarLabel="Date accesed on"
-                  initialFocus
-                  onValueChange={(v) => {
-                    if (v) {
-                      $formData.citationFormSchemaOptions.accessed_on =
-                        v.toString();
-                    } else {
-                      $formData.citationFormSchemaOptions.accessed_on = "";
-                    }
-                  }}
-                />
-              </Popover.Content>
-            </Popover.Root>
+              <Form.FieldErrors />
+              <input
+                hidden
+                value={$formData.citationFormSchemaOptions.accessed_on}
+                name={attrs.name}
+              />
+            </Form.Control>
+          </Form.Field>
+        </div>
+        <!-- Published on year -->
+        <div class="grow">
+          <Form.Field {form} name="citationFormSchemaOptions.publication_year">
+            <Form.Control let:attrs>
+              <Form.Label>Année de publication</Form.Label>
+              <Input
+                {...attrs}
+                bind:value={$formData.citationFormSchemaOptions
+                  .publication_year}
+              />
+            </Form.Control>
             <Form.Description hidden
-              >La date à laquelle la source a été consultatée</Form.Description
+              >L'année à laquelle la source a été publiée</Form.Description
             >
-            <Form.FieldErrors />
-            <input
-              hidden
-              value={$formData.citationFormSchemaOptions.accessed_on}
-              name={attrs.name}
-            />
-          </Form.Control>
-        </Form.Field>
+            <Form.FieldErrors></Form.FieldErrors>
+          </Form.Field>
+        </div>
       </div>
     {/if}
     <!-- <Form.FormFieldErrors /> -->

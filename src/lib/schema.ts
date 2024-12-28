@@ -11,14 +11,17 @@ export const citationFormSchemaOptions = z.discriminatedUnion("source_type", [
   z.object({
     name: z.string().min(1).max(255).optional(),
     url: z.string().min(1).max(255),
+    publication_year: z.string().optional(),
     accessed_on: z.string(),
     source_type: source_enum.extract(["web"]),
+    last_added: z.string().optional(),
   }),
   z.object({
     publisher: z.string().min(1).max(255).optional(),
     collection: z.string().min(1).max(255).optional(),
     year: z.string().default("2025").optional(),
     page: z.string().default("1"),
+    total_pages: z.string().default("1"),
     source_type: source_enum.extract(["livre"]),
   }),
 ]);

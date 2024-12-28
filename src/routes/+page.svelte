@@ -12,10 +12,11 @@
     <p>
       Pour l'utiliser, veuillez remplir les champs à gauche. Vous pouvez aussi
       copier les citations dans Word, gardant la mise en page, en faisant un
-      simple copier coller. Vous pouver aussi simplement copier le lien en cours de cette page pour le partager ou y revenir plus tard.
+      simple copier coller. Vous pouver aussi simplement copier le lien en cours
+      de cette page pour le partager ou y revenir plus tard.
     </p>
     <h4 class="text-lg">
-      Cette page est <b>lente</b>. Très lente. Veuillez s'il vous plait <b>attendre</b> un peu
+      Cette page est <b>lente</b>. Veuillez s'il vous plait <b>attendre</b> un peu
       avant d'obtenir une mise à jour des citations (quelques secondes devraient
       suffire, mais cela pourrait durer jusqu'à 10-15 secondes).
     </h4>

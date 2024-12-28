@@ -81,7 +81,86 @@ function match_month(month: string): string {
   }
 }
 
-export function formatCitation(cit: string): string {
+export function formatBibliography(cit: string): string {
+  let formattedCitation = "";
+  let citation = JSON.parse(JSON.stringify(cit)).data;
+
+  if (citation.citationFormSchemaOptions.source_type === SourceType.LIVRE) {
+    // Book citation
+    // Author
+    formattedCitation =
+      citation.author.last_name !== "" && citation.author.first_name !== ""
+        ? (citation.author.last_name !== ""
+            ? citation.author.last_name.toUpperCase() + ", "
+            : "") +
+          (citation.author.first_name !== ""
+            ? citation.author.first_name + ", "
+            : "")
+        : "Sans auteur, ";
+    // Title
+    formattedCitation =
+      formattedCitation +
+      (citation.title !== ""
+        ? "<i>" + citation.title + "</i>, "
+        : "Sans titre, ");
+    // Publisher
+    formattedCitation =
+      formattedCitation +
+      (citation.citationFormSchemaOptions.publisher !== ""
+        ? citation.citationFormSchemaOptions.publisher + ", "
+        : "Éditions inconnues, ");
+    // Publication year
+    formattedCitation =
+      formattedCitation +
+      (citation.citationFormSchemaOptions.year !== 0
+        ? citation.citationFormSchemaOptions.year + ", "
+        : "Année de parution inconnue, ");
+    // Total pages
+    formattedCitation =
+      formattedCitation +
+      (citation.citationFormSchemaOptions.total_pages !== 0
+        ? citation.citationFormSchemaOptions.total_pages +
+          " " +
+          (citation.citationFormSchemaOptions.total_pages > 1
+            ? "pages."
+            : "page.")
+        : "Nombre de pages inconnu.");
+  } else {
+    // Web citation
+    // Author
+    formattedCitation =
+      citation.author.last_name !== "" && citation.author.first_name !== ""
+        ? (citation.author.last_name !== ""
+            ? citation.author.last_name.toUpperCase() + ", "
+            : "") +
+          (citation.author.first_name !== ""
+            ? citation.author.first_name + ", "
+            : "")
+        : "Sans auteur, ";
+    // Title
+    formattedCitation =
+      formattedCitation +
+      (citation.title !== ""
+        ? "<i>" + citation.title + "</i> "
+        : "Sans titre, ") +
+      "[En ligne]. ";
+    // URL
+    formattedCitation =
+      formattedCitation +
+      (citation.citationFormSchemaOptions.url !== ""
+        ? "Adresse URL : " + citation.citationFormSchemaOptions.url + " "
+        : "URL inconnue ");
+    // Publication year
+    formattedCitation =
+      formattedCitation +
+      (citation.citationFormSchemaOptions.publication_year !== ""
+        ? "(" + citation.citationFormSchemaOptions.publication_year + "). "
+        : "(Année de publication inconnue). ");
+  }
+  return formattedCitation;
+}
+
+export function formatFootnote(cit: string): string {
   let formattedCitation = "";
   let citation = JSON.parse(JSON.stringify(cit)).data;
 
