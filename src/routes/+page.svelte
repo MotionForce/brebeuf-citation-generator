@@ -34,20 +34,20 @@
     {/key}
   </div>
   <footer>
-    <p>Libraries and packages used in this program:</p>
+    <p>Bibliothèques et librairies utilisées pour cette application:</p>
     <ul>
-      <il>SvelteKit 2 as framework;</il>
-      <il>Shadcn-Svelte and TailwindCSS for UI components;</il>
+      <il>SvelteKit 2 comme framework;</il>
+      <il>Shadcn-Svelte et TailwindCSS pour le UI;</il>
       <il
-        >zod, formsnap and SvelteKit-Superforms for form validation and
-        creation.</il
+        >zod, formsnap et SvelteKit-Superforms pour la création de form et leur
+        validation.</il
       >
     </ul>
     <p>
-      This is a personnal project which is designed to be used only in an
-      educational context to facilitate the process of writing a bibliography.
-      This project should not be used to cheating of any kind. Use at your own
-      risk.
+      Ceci est un projet personnel qui est conçu pour être utilisé uniquement
+      dans un contexte éducatif pour faciliter le processus d'écriture d'une
+      bibliographie. Ce projet ne doit pas être utilisé pour tricher de quelque
+      manière que ce soit. Utilisez à votre risque.
     </p>
   </footer>
 </div>
