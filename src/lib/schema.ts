@@ -9,18 +9,18 @@ const source_enum = z.enum(["livre", "web"]);
 
 export const citationFormSchemaOptions = z.discriminatedUnion("source_type", [
   z.object({
-    name: z.string().min(1).max(255).optional(),
-    url: z.string().min(1).max(255),
+    name: z.string().optional(),
+    url: z.string(),
     publication_year: z.string().optional(),
     accessed_on: z.string(),
     source_type: source_enum.extract(["web"]),
     last_added: z.string().optional(),
   }),
   z.object({
-    publisher: z.string().min(1).max(255).optional(),
-    collection: z.string().min(1).max(255).optional(),
+    publisher: z.string().optional(),
+    collection: z.string().optional(),
     year: z.string().default("2025").optional(),
-    page: z.string().default("1"),
+    page: z.string().default("1").optional(),
     total_pages: z.string().default("1"),
     source_type: source_enum.extract(["livre"]),
   }),
@@ -28,10 +28,10 @@ export const citationFormSchemaOptions = z.discriminatedUnion("source_type", [
 
 export const citationFormSchema = z.object({
   author: z.object({
-    first_name: z.string().min(1).max(255),
-    last_name: z.string().min(1).max(255),
+    first_name: z.string().optional().default(""),
+    last_name: z.string().optional().default(""),
   }),
-  title: z.string().min(1).max(255),
+  title: z.string().optional().default(""),
   citationFormSchemaOptions,
 });
 

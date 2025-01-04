@@ -30,6 +30,7 @@
   import { Button, buttonVariants } from "$lib/components/ui/button/index.js";
   import { Calendar } from "$lib/components/ui/calendar/index.js";
   import * as Popover from "$lib/components/ui/popover/index.js";
+  import { browser, dev } from "$app/environment";
 
   export let data: SuperValidated<Infer<CitationFormSchema>>;
 
@@ -333,8 +334,8 @@
     {/if}
     <!-- <Form.FormFieldErrors /> -->
     <Button type="submit">Ajouter</Button>
-    <!-- {#if browser && dev}
+    {#if browser && dev}
       <SuperDebug data={$formData} />
-    {/if} -->
+    {/if}
   </form>
 </div>

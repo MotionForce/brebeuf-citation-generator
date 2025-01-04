@@ -89,39 +89,48 @@ export function formatBibliography(cit: string): string {
     // Book citation
     // Author
     formattedCitation =
-      citation.author.last_name !== "" && citation.author.first_name !== ""
-        ? (citation.author.last_name !== ""
+      citation.author.last_name === "" &&
+      citation.author.first_name === "" &&
+      citation.author.last_name === undefined &&
+      citation.author.first_name === undefined
+        ? "Sans auteur, "
+        : (citation.author.last_name !== "" &&
+          citation.author.last_name !== undefined
             ? citation.author.last_name.toUpperCase() + ", "
             : "") +
-          (citation.author.first_name !== ""
+          (citation.author.first_name !== "" &&
+          citation.author.first_name !== undefined
             ? citation.author.first_name + ", "
-            : "")
-        : "Sans auteur, ";
+            : "");
     // Title
     formattedCitation =
       formattedCitation +
-      (citation.title !== ""
+      (citation.title !== "" && citation.title !== undefined
         ? "<i>" + citation.title + "</i>, "
         : "Sans titre, ");
     // Publisher
     formattedCitation =
       formattedCitation +
-      (citation.citationFormSchemaOptions.publisher !== ""
+      (citation.citationFormSchemaOptions.publisher !== "" &&
+      citation.citationFormSchemaOptions.publisher !== undefined
         ? citation.citationFormSchemaOptions.publisher + ", "
         : "Éditions inconnues, ");
     // Publication year
     formattedCitation =
       formattedCitation +
-      (citation.citationFormSchemaOptions.year !== 0
+      (citation.citationFormSchemaOptions.year !== 0 &&
+      citation.citationFormSchemaOptions.year !== undefined
         ? citation.citationFormSchemaOptions.year + ", "
         : "Année de parution inconnue, ");
     // Total pages
     formattedCitation =
       formattedCitation +
-      (citation.citationFormSchemaOptions.total_pages !== 0
+      (citation.citationFormSchemaOptions.total_pages !== 0 &&
+      citation.citationFormSchemaOptions.total_pages !== undefined
         ? citation.citationFormSchemaOptions.total_pages +
           " " +
-          (citation.citationFormSchemaOptions.total_pages > 1
+          (citation.citationFormSchemaOptions.total_pages > 1 &&
+          citation.citationFormSchemaOptions.total_pages !== undefined
             ? "pages."
             : "page.")
         : "Nombre de pages inconnu.");
@@ -129,31 +138,38 @@ export function formatBibliography(cit: string): string {
     // Web citation
     // Author
     formattedCitation =
-      citation.author.last_name !== "" && citation.author.first_name !== ""
-        ? (citation.author.last_name !== ""
+      citation.author.last_name === "" &&
+      citation.author.first_name === "" &&
+      citation.author.last_name === undefined &&
+      citation.author.first_name === undefined
+        ? "Sans auteur, "
+        : (citation.author.last_name !== "" &&
+          citation.author.last_name !== undefined
             ? citation.author.last_name.toUpperCase() + ", "
             : "") +
-          (citation.author.first_name !== ""
+          (citation.author.first_name !== "" &&
+          citation.author.first_name !== undefined
             ? citation.author.first_name + ", "
-            : "")
-        : "Sans auteur, ";
+            : "");
     // Title
     formattedCitation =
       formattedCitation +
-      (citation.title !== ""
+      (citation.title !== "" && citation.title !== undefined
         ? "<i>" + citation.title + "</i> "
         : "Sans titre, ") +
       "[En ligne]. ";
     // URL
     formattedCitation =
       formattedCitation +
-      (citation.citationFormSchemaOptions.url !== ""
+      (citation.citationFormSchemaOptions.url !== "" &&
+      citation.citationFormSchemaOptions.url !== undefined
         ? "Adresse URL : " + citation.citationFormSchemaOptions.url + " "
         : "URL inconnue ");
     // Publication year
     formattedCitation =
       formattedCitation +
-      (citation.citationFormSchemaOptions.publication_year !== ""
+      (citation.citationFormSchemaOptions.publication_year !== "" &&
+      citation.citationFormSchemaOptions.publication_year !== undefined
         ? "(" + citation.citationFormSchemaOptions.publication_year + "). "
         : "(Année de publication inconnue). ");
   }
@@ -168,66 +184,89 @@ export function formatFootnote(cit: string): string {
     // Book citation
     // Author
     formattedCitation =
-      formattedCitation +
-      (citation.author.first_name !== "" && citation.author.last_name !== ""
-        ? citation.author.first_name + " " + citation.author.last_name + ", "
-        : "Sans auteur, ");
+      citation.author.last_name === "" &&
+      citation.author.first_name === "" &&
+      citation.author.last_name === undefined &&
+      citation.author.first_name === undefined
+        ? "Sans auteur, "
+        : (citation.author.last_name !== "" &&
+          citation.author.last_name !== undefined
+            ? citation.author.last_name.toUpperCase() + ", "
+            : "") +
+          (citation.author.first_name !== "" &&
+          citation.author.first_name !== undefined
+            ? citation.author.first_name + ", "
+            : "");
     // Title
     formattedCitation =
       formattedCitation +
-      (citation.title !== "" ? "« " + citation.title + " », " : "Sans titre, ");
+      (citation.title !== "" && citation.title !== undefined
+        ? "« " + citation.title + " », "
+        : "Sans titre, ");
     // Publisher
     formattedCitation =
       formattedCitation +
-      (citation.citationFormSchemaOptions.publisher !== ""
+      (citation.citationFormSchemaOptions.publisher !== "" &&
+      citation.citationFormSchemaOptions.publisher !== undefined
         ? citation.citationFormSchemaOptions.publisher + ", "
         : "Éditions inconnues, ");
     // Collection
     formattedCitation =
       formattedCitation +
-      (citation.citationFormSchemaOptions.collection !== ""
+      (citation.citationFormSchemaOptions.collection !== "" &&
+      citation.citationFormSchemaOptions.collection !== undefined
         ? "coll. « " + citation.citationFormSchemaOptions.collection + " », "
         : "Collection inconnue, ");
     // Year
     formattedCitation =
       formattedCitation +
-      (citation.citationFormSchemaOptions.year !== 0
+      (citation.citationFormSchemaOptions.year !== 0 &&
+      citation.citationFormSchemaOptions.year !== undefined
         ? citation.citationFormSchemaOptions.year + ", "
         : "Année de parution inconnue, ");
     // Page
     formattedCitation =
       formattedCitation +
-      (citation.citationFormSchemaOptions.page !== 0
+      (citation.citationFormSchemaOptions.page !== 0 &&
+      citation.citationFormSchemaOptions.page !== undefined
         ? "p. <i>" + citation.citationFormSchemaOptions.page + "</i>."
         : "Page inconnue.");
   } else {
     // Web citation
     // Author
     formattedCitation =
-      formattedCitation +
-      (citation.author.first_name !== "" && citation.author.last_name !== ""
-        ? (citation.author.last_name !== ""
+      citation.author.last_name === "" &&
+      citation.author.first_name === "" &&
+      citation.author.last_name === undefined &&
+      citation.author.first_name === undefined
+        ? "Sans auteur, "
+        : (citation.author.last_name !== "" &&
+          citation.author.last_name !== undefined
             ? citation.author.last_name.toUpperCase() + ", "
             : "") +
-          (citation.author.first_name !== ""
+          (citation.author.first_name !== "" &&
+          citation.author.first_name !== undefined
             ? citation.author.first_name + ", "
-            : "")
-        : "Sans auteur, ");
+            : "");
     // Title
     formattedCitation =
       formattedCitation +
-      (citation.title !== "" ? "« " + citation.title + " », " : "Sans titre, ");
+      (citation.title !== "" && citation.title !== undefined
+        ? "« " + citation.title + " », "
+        : "Sans titre, ");
     // Name
     formattedCitation =
       formattedCitation +
-      (citation.citationFormSchemaOptions.name !== ""
+      (citation.citationFormSchemaOptions.name !== "" &&
+      citation.citationFormSchemaOptions.name !== undefined
         ? "<i>" + citation.citationFormSchemaOptions.name + "</i>, "
         : "<i> Nom du site Web inconnu </i>, ");
     // URL
     formattedCitation =
       formattedCitation +
       "[en ligne], " +
-      (citation.citationFormSchemaOptions.url !== ""
+      (citation.citationFormSchemaOptions.url !== "" &&
+      citation.citationFormSchemaOptions.url !== undefined
         ? "[" + citation.citationFormSchemaOptions.url + "], "
         : "URL inconnue, ");
     // Accessed on
@@ -236,7 +275,8 @@ export function formatFootnote(cit: string): string {
     formattedCitation =
       formattedCitation +
       "(consulté le " +
-      (citation.citationFormSchemaOptions.accessed_on !== ""
+      (citation.citationFormSchemaOptions.accessed_on !== "" &&
+      citation.citationFormSchemaOptions.accessed_on !== undefined
         ? citation.citationFormSchemaOptions.accessed_on?.split("-")[2] +
           (month_index === undefined
             ? " mois inconnu "
