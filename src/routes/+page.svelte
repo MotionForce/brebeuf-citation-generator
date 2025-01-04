@@ -33,5 +33,22 @@
       </div>
     {/key}
   </div>
+  <footer>
+    <p>Libraries and packages used in this program:</p>
+    <ul>
+      <il>SvelteKit 2 as framework;</il>
+      <il>Shadcn-Svelte and TailwindCSS for UI components;</il>
+      <il
+        >zod, formsnap and SvelteKit-Superforms for form validation and
+        creation.</il
+      >
+    </ul>
+    <p>
+      This is a personnal project which is designed to be used only in an
+      educational context to facilitate the process of writing a bibliography.
+      This project should not be used to cheating of any kind. Use at your own
+      risk.
+    </p>
+  </footer>
 </div>
 <!-- <pre>{JSON.stringify(data, null, 2)}</pre> -->
